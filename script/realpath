@@ -1,6 +1,8 @@
 #!perl
 
+# AUTHORITY
 # DATE
+# DIST
 # VERSION
 
 use strict;
@@ -52,18 +54,45 @@ parse_cmdline();
 run();
 
 1;
-# ABSTRACT: Print the resolved patah
+# ABSTRACT: Print the resolved (absolute) path
 # PODNAME:
 
 =head1 SYNOPSIS
 
  % realpath [OPTION]... <FILE>...
+ % abspath  [OPTION]... <FILE>...
+
+To demonstrate how C<realpath>, C<quickabspath>, and C<relpath> give you
+different results:
+
+ % pwd
+ /home/ujang
+
+ % mkdir dir1
+ % ln -s dir1 sym1
+
+ % cd sym1
+
+ % realpath .
+ /home/ujang/dir1
+
+ % quickabspath .
+ /home/ujang/sym1
+
+ % relpath /home/ujang/dir1
+ .
+ % relpath /home/ujang/sym1
+ ../sym1
 
 
 =head1 DESCRIPTION
 
 This is the Perl-based implementation alternative for the Unix utility
-B<realpath>.
+B<realpath> (also aliased to L<abspath>). It uses L<Cwd>'s C<realpath> (which is
+the same as C<abs_path>) function. The function works by reading "." (the
+current directory) and moving upwards until it reaches the root directory,
+resolving symlinks along the way.
+
 
 =head1 OPTIONS
 
@@ -81,6 +110,8 @@ B<realpath>.
 =head1 SEE ALSO
 
 Unix utility B<realpath>
+
+L<relpath>, L<quickabspath>
 
 L<Cwd>
 

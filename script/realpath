@@ -73,10 +73,12 @@ different results:
 
  % cd sym1
 
- % realpath .
+ % realpath .      ;# gives absolute path and resolve symlinks
+ /home/ujang/dir1
+ % abspath .       ;# an alias for realpath
  /home/ujang/dir1
 
- % quickabspath .
+ % quickabspath .  ;# gives absolute path but does not resolve symlinks
  /home/ujang/sym1
 
  % relpath /home/ujang/dir1

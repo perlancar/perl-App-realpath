@@ -1,6 +1,8 @@
 package App::realpath;
 
+# AUTHORITY
 # DATE
+# DIST
 # VERSION
 
 1;

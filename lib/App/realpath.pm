@@ -1,5 +1,7 @@
 package App::realpath;
 
+use strict;
+
 # AUTHORITY
 # DATE
 # DIST

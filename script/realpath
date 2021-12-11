@@ -1,14 +1,14 @@
 #!perl
 
-# AUTHORITY
-# DATE
-# DIST
-# VERSION
-
 use strict;
 use warnings;
 
 use Getopt::Long qw(:config gnu_getopt no_ignore_case);
+
+# AUTHORITY
+# DATE
+# DIST
+# VERSION
 
 my $opt_logical = 0;
 sub parse_cmdline {
@@ -84,17 +84,19 @@ different results:
 
  % cd sym1
 
- % realpath .      ;# gives absolute path and resolve symlinks
+ % realpath .          ;# gives absolute path and resolve symlinks (-P, the default)
  /home/ujang/dir1
- % abspath .       ;# an alias for realpath
+ % realpath -P .       ;# ditto (-P is the default)
  /home/ujang/dir1
- % realpath foo    ;# uses PWD for working directory
+ % abspath .           ;# an alias for realpath
+ /home/ujang/dir1
+ % realpath -L foo     ;# uses PWD for working directory (-L)
  /home/ujang/sym1/foo
 
- % quickabspath .  ;# gives absolute path but does not resolve symlinks
+ % quickabspath .      ;# gives absolute path but does not resolve symlinks
  /home/ujang/sym1
 
-                    # relpath does the opposite, converting to relative path
+                        # relpath does the opposite, converting to relative path
  % relpath /home/ujang/dir1
  .
  % relpath /home/ujang/sym1
